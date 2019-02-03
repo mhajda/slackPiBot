@@ -31,7 +31,7 @@ slack_client = SlackClient("xoxb-YOUR-API-KEY-HERE")
 # Fetch your Bot's User ID
 user_list = slack_client.api_call("users.list")
 for user in user_list.get('members'):
-    if user.get('name') == "robot-evan":
+    if user.get('name') == "YOUR-ROBOT-NAME-HERE":
         slack_user_id = user.get('id')
         break
 
@@ -63,9 +63,10 @@ if slack_client.rtm_connect():
                     res = conn.getresponse()
                     print res.read()
 
-                    if "unspeakable" in message_text:
-                        p = subprocess.Popen(["aplay", "/home/pi/slackPiBot/audio_files/WhatTheFlip.wav"], stdout=subprocess.PIPE)
+                    if "New video" in message_text:
+                        p = subprocess.Popen(["mpg123", "/home/pi/slackPiBot/audio_files/NewVideoPosted.mp3"], stdout=subprocess.PIPE)
                         print p.communicate()
+
 
             if 'text' in event and (event['text'].startswith("bot") or event['text'].startswith("Bot")):
                 if "Bot" in event['text']:
@@ -89,8 +90,8 @@ if slack_client.rtm_connect():
                     res = conn.getresponse()
                     print res.read()
 
-                if "what the flip" in message_text:
-                    p = subprocess.Popen(["aplay", "/home/pi/slackPiBot/audio_files/WhatTheFlip.wav"], stdout=subprocess.PIPE)
+                if "new video" in message_text:
+                    p = subprocess.Popen(["mpg123", "/home/pi/slackPiBot/audio_files/NewVideoPosted.mp3"], stdout=subprocess.PIPE)
                     print p.communicate()
 
         time.sleep(1)
