@@ -11,9 +11,6 @@ import urllib
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-#hold script a bit to let boot settle
-#time.sleep(1)
-
 while True:
     time.sleep(0.02)
     input_state = GPIO.input(17)
